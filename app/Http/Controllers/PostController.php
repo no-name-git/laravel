@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 
@@ -26,7 +28,6 @@ class PostController extends Controller
     public function create()
     {
         return view('create');
-        
     }
 
     /**
@@ -35,9 +36,12 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        
+        $date = $request->validated();
+        // dd($date);
+        Post::create($date);
+        return redirect()->route('index');
     }
 
     /**
@@ -46,9 +50,9 @@ class PostController extends Controller
      * @param  \App\Models\PostController  $postController
      * @return \Illuminate\Http\Response
      */
-    public function show(PostController $postController)
+    public function show(Post $id)
     {
-        return view('show');
+        return view('show', compact('id'));
         
     }
 
@@ -58,10 +62,10 @@ class PostController extends Controller
      * @param  \App\Models\PostController  $postController
      * @return \Illuminate\Http\Response
      */
-    public function edit(PostController $postController)
+    // public function edit(UpdatePostRequest $request, Post $id)
+    public function edit(Post $id) 
     {
-        return view('create');
-        
+        return view('edit', compact('id'));
     }
 
     /**
@@ -71,9 +75,11 @@ class PostController extends Controller
      * @param  \App\Models\PostController  $postController
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PostController $postController)
+    public function update(UpdatePostRequest $request, Post $id)
     {
-        //
+        $date = $request->validated();
+        $id->update($date);
+        return redirect()->route('show' , $id->id);
     }
 
     /**
@@ -82,8 +88,9 @@ class PostController extends Controller
      * @param  \App\Models\PostController  $postController
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PostController $postController)
+    public function destroy(Post $id)
     {
-        //
+        $id->delete();
+        return redirect()->route('index');
     }
 }

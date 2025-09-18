@@ -1,15 +1,14 @@
-@extends('layouts.header', ['titlePage' => "Главная страница"])
+@extends('layouts.header', ['titlePage' => "Все пользователи"])
 @section('content')
 <div>
-    <h1 class="text-2xl font-bold mb-6">All Posts</h1>
-
+    <h1 class="text-2xl font-bold mb-6">All Users</h1>
+@dd($users)
     <div class="space-y-4">
         <!-- Пример одного поста -->
-        @foreach ($posts as $post)
+        @foreach ($users as $user)
             <div class="bg-white shadow rounded p-4">
-                <a href="{{route('show' , $post->id)}}" class="text-xl font-semibold text-indigo-600">{{$post->title}}</a>
-                <p class="text-gray-600 text-sm mb-2">{{$post->author->name}} — {{$post->created_at}}</p>
-                <p class="text-gray-700">{{$post->deskr}}</p>
+                <a href="" class="text-xl font-semibold text-indigo-600">{{$user->name}}</a>
+                <p class="text-gray-600 text-sm mb-2">{{$user->email}} — {{$user->created_at}}</p>
                 <div class="mt-4 flex gap-2">
                     {{-- <button class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">Edit</button>
                     <button class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700">Delete</button> --}}

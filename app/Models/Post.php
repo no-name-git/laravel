@@ -10,6 +10,10 @@ class Post extends Model
 {
     use HasFactory;
 
+    
+    protected $guarded = false;
+    protected $table = 'posts';
+
 
     public function author()
     {
