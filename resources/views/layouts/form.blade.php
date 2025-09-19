@@ -18,3 +18,9 @@
         <label class="block mb-1 font-medium">Author</label>
         <input name="user_id" type="text" value="{{old('user_id') ?? $id->user_id ?? '' }}" placeholder="Admin" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-200">
     </div>
+    <div>
+        <input type="file" name="image" id="image" class="form-control" required>
+        @error('image')
+            {{$message}}
+        @enderror
+    </div>

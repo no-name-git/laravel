@@ -1,6 +1,9 @@
 @extends('layouts.header', ['titlePage' => $id->title])
 @section('content')
 
+@if (session('success'))
+    <p>{{session('success')}}</p>    
+@endif
 
 <div class="bg-white shadow rounded p-6">
     <h1 class="text-3xl font-bold mb-4">{{$id->title}}</h1>

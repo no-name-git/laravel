@@ -16,7 +16,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::with('author')->get();
+        // $posts = Post::with('author')->get();
+        $posts = Post::paginate(6);
         return view('index', compact('posts'));
     }
 
@@ -41,7 +42,7 @@ class PostController extends Controller
         $date = $request->validated();
         // dd($date);
         Post::create($date);
-        return redirect()->route('index');
+        return redirect()->route('index')->with('success', 'Post is create');
     }
 
     /**
@@ -53,7 +54,6 @@ class PostController extends Controller
     public function show(Post $id)
     {
         return view('show', compact('id'));
-        
     }
 
     /**
@@ -79,7 +79,7 @@ class PostController extends Controller
     {
         $date = $request->validated();
         $id->update($date);
-        return redirect()->route('show' , $id->id);
+        return redirect()->route('show' , $id->id)->with('success', 'Update post!');
     }
 
     /**

@@ -3,8 +3,11 @@
     "scripts": {
         "dev": "vite",
         "prod": "npm run production",
-        "build": "vite build"
+        "build": "vite build",
+        "css": "npx tailwindcss -i ../resources/src/input.css -o ../resources/src/output.css --watch"
+    
     },
+   
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
         "alpinejs": "^3.4.2",

@@ -3,10 +3,16 @@
 <div>
     <h1 class="text-2xl font-bold mb-6">All Posts</h1>
 
+    {{-- надо красиво оформить --}}
+    @if (session('success'))
+        <p>{{ session('success') }}</p>
+    @endif
+
     <div class="space-y-4">
         <!-- Пример одного поста -->
         @foreach ($posts as $post)
             <div class="bg-white shadow rounded p-4">
+                <img src="{{ asset('storage/' . $post->image ?? 'storage/images/defolt.png')}}">
                 <a href="{{route('show' , $post->id)}}" class="text-xl font-semibold text-indigo-600">{{$post->title}}</a>
                 <p class="text-gray-600 text-sm mb-2">{{$post->author->name}} — {{$post->created_at}}</p>
                 <p class="text-gray-700">{{$post->deskr}}</p>
@@ -21,6 +27,7 @@
     </div>
 
     <div class="mt-6 flex justify-between">
+        {{ $posts->links() }}
         <button class="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">Previous</button>
         <button class="px-3 py-1 bg-gray-300 rounded hover:bg-gray-400">Next</button>
     </div>

@@ -26,7 +26,9 @@ class UpdatePostRequest extends FormRequest
         return [
             'title' => 'required|min:3|max:40',
             'deskr' => 'required|min:1|max:500',
-            'user_id' => 'required'
+            'user_id' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5120'
+
         ];
     }
 
@@ -37,7 +39,9 @@ class UpdatePostRequest extends FormRequest
             'title.min' => 'Минимальное число символов 3',
             'deskr.required' => 'Введите описание',
             'deskr.min' => 'Минимальное число символов 1',
-            
+            'image.image' => 'Файл должен быть .jpeg, .png, .jpg, .gif',
+            'image.max' => 'Файл должен весить не больше 5MB'
+        
         ];
     }
 }
