@@ -40,6 +40,10 @@ class PostController extends Controller
     public function store(CreatePostRequest $request)
     {
         $date = $request->validated();
+        if($request->hasFile('image')){
+            $path = $request->file('image')->store('posts', 'public');
+        }
+        $date['image'] = $path;
         // dd($date);
         Post::create($date);
         return redirect()->route('index')->with('success', 'Post is create');
@@ -78,6 +82,10 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, Post $id)
     {
         $date = $request->validated();
+        if($request->hasFile('image')){
+            $path = $request->file('image')->store('posts', 'public');
+            $date['image'] = $path;
+        }
         $id->update($date);
         return redirect()->route('show' , $id->id)->with('success', 'Update post!');
     }
