@@ -14,6 +14,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+
     public function index()
     {
         // $posts = Post::with('author')->get();
@@ -42,8 +47,8 @@ class PostController extends Controller
         $date = $request->validated();
         if($request->hasFile('image')){
             $path = $request->file('image')->store('posts', 'public');
+            $date['image'] = $path;
         }
-        $date['image'] = $path;
         // dd($date);
         Post::create($date);
         return redirect()->route('index')->with('success', 'Post is create');
@@ -58,6 +63,7 @@ class PostController extends Controller
     public function show(Post $id)
     {
         return view('show', compact('id'));
+        
     }
 
     /**
@@ -102,3 +108,4 @@ class PostController extends Controller
         return redirect()->route('index');
     }
 }
+

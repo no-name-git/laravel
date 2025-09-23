@@ -17,6 +17,18 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+    const ROLE_USER = null;
+    const ROLE_ADMIN = 1;
+
+    public function getRoles() :array
+    {
+        return [
+            self::ROLE_ADMIN => 'admin',
+            self::ROLE_USER => 'user'
+        ];
+
+    }
+
     protected $fillable = [
         'name',
         'email',

@@ -13,7 +13,7 @@ Route::get('/', function(){
 });
 
 Route::get('/index', [PostController::class, 'index'])->name('index');
-Route::get('/create', [PostController::class, 'create'])->name('create');
+Route::get('/create', [PostController::class, 'create'])->middleware('auth')->name('create');
 Route::post('/store', [PostController::class, 'store'])->name('store');
 Route::get('/show/{id}', [PostController::class, 'show'])->name('show');
 
