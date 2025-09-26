@@ -19,7 +19,7 @@
         <input name="user_id" type="text" value="{{old('user_id') ?? $id->user_id ?? '' }}" placeholder="Admin" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-200">
     </div>
     <div>
-        <input type="file" name="image" id="image" class="form-control" required>
+        <input type="file" name="image" id="image" class="form-control">
         @error('image')
             {{$message}}
         @enderror

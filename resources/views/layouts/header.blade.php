@@ -13,10 +13,10 @@
         <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="{{route('index')}}" class="text-xl font-bold text-indigo-600">What i know?</a>
             <nav class="flex gap-4 nav">
-                <a href="{{'index'}}" class="text-sm text-gray-600 hover:underline">Posts</a>
-                <a href="{{'create'}}" class="text-sm text-gray-600 hover:underline">Create post</a>
+                <a href="{{route('index')}}" class="text-sm text-gray-600 hover:underline">Posts</a>
+                <a href="{{route('create')}}" class="text-sm text-gray-600 hover:underline">Create post</a>
                 <a href="" class="text-sm text-gray-600 hover:underline">Users</a>
-                <a href="#" class="text-sm text-gray-600 hover:underline">Logout</a>
+                <a href="{{ route('dashboard') }}" class="text-sm text-gray-600 hover:underline">Logout</a>
             </nav>
         </div>
     </header>

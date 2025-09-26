@@ -12,6 +12,17 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    const ROLE_GUEST = 0;
+    const ROLE_ADMIN = 1;
+
+    public static function getRoles() :array
+    {
+        return [
+            self::ROLE_GUEST => "guest",
+            self::ROLE_ADMIN => "admin"
+        ];
+    } 
+    //две константы на уровни доступа 
     /**
      * The attributes that are mass assignable.
      *

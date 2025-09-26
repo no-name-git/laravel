@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -28,6 +29,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', Post::class);
         return view('create');
     }
 
@@ -42,8 +44,8 @@ class PostController extends Controller
         $date = $request->validated();
         if($request->hasFile('image')){
             $path = $request->file('image')->store('posts', 'public');
+            $date['image'] = $path;
         }
-        $date['image'] = $path;
         // dd($date);
         Post::create($date);
         return redirect()->route('index')->with('success', 'Post is create');
@@ -99,6 +101,6 @@ class PostController extends Controller
     public function destroy(Post $id)
     {
         $id->delete();
-        return redirect()->route('index');
+        return redirect()->route('index')->with('success', 'Post is delete!');
     }
 }
