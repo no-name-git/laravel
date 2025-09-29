@@ -17,12 +17,17 @@
     </div>
 
     <div class="flex gap-4">
-        <a href="{{route('edit' , $id->id)}}" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">Edit</a>
+        @can('update', $id)
+            <a href="{{route('edit' , $id->id)}}" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">Edit</a>
+        @endcan
+        @can('delete', $id)
+            
         <form method="post" action="{{route('destroy' , $id->id)}}">
             @csrf
             @method('DELETE')
             <button type="submit" class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700">Delete</button>
         </form>    
+        @endcan
             
     </div>
 </div>

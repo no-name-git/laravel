@@ -26,7 +26,7 @@ class UpdatePostRequest extends FormRequest
         return [
             'title' => 'required|min:3|max:40',
             'deskr' => 'required|min:1|max:500',
-            'user_id' => 'required',
+            'user_id' => 'required|exists:users,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120'
 
         ];

@@ -7,6 +7,7 @@ use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -29,8 +30,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $this->authorize('create', Post::class);
-        return view('create');
+        $user_id = Auth::id();
+        return view('create', compact('user_id'));
     }
 
     /**
@@ -71,6 +72,7 @@ class PostController extends Controller
     // public function edit(UpdatePostRequest $request, Post $id)
     public function edit(Post $id) 
     {
+        $this->authorize('update', $id);
         return view('edit', compact('id'));
     }
 
@@ -100,6 +102,7 @@ class PostController extends Controller
      */
     public function destroy(Post $id)
     {
+        $this->authorize('delete', $id);
         $id->delete();
         return redirect()->route('index')->with('success', 'Post is delete!');
     }

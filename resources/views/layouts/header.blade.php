@@ -14,9 +14,24 @@
             <a href="{{route('index')}}" class="text-xl font-bold text-indigo-600">What i know?</a>
             <nav class="flex gap-4 nav">
                 <a href="{{route('index')}}" class="text-sm text-gray-600 hover:underline">Posts</a>
-                <a href="{{route('create')}}" class="text-sm text-gray-600 hover:underline">Create post</a>
-                <a href="" class="text-sm text-gray-600 hover:underline">Users</a>
-                <a href="{{ route('dashboard') }}" class="text-sm text-gray-600 hover:underline">Logout</a>
+                @auth
+                    <a href="{{route('create')}}" class="text-sm text-gray-600 hover:underline">Create post</a>
+                    <a href="" class="text-sm text-gray-600 hover:underline">Users</a>
+                @endauth
+                @guest
+                    <a href="{{route('login')}}" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">log in</a>
+                    <a href="{{route('register')}}" class="px-3 py-1 bg-pink-600 text-white rounded hover:bg-pink-700">register</a>
+                @endguest
+                @auth
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        <button type="submit" class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700">Logout</button>
+                    </form>
+                @endauth
+                @auth
+                    <p>{{Auth::user()->name}}</p>
+                @endauth
+                {{-- <a href="{{ route('dashboard') }}" class="text-sm text-gray-600 hover:underline">Logout</a> --}}
             </nav>
         </div>
     </header>

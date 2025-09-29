@@ -38,14 +38,12 @@ class PostPolicy
      * Determine whether the user can create models.
      *
      * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user):bool
+    public function create(User $user)
     {
-        // dd($user->admin);
-        return $user->admin === User::ROLE_ADMIN;
-            // ? Response::allow()
-            // : Response::denyWithStatus(404); вообще должна быть ошибка 404 но не работает
+        //
     }
 
     /**
@@ -57,7 +55,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_id || $user->admin === $user::ROLE_ADMIN;
     }
 
     /**
@@ -69,7 +67,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        //
+        return $user->id === $post->user_id || $user->admin === $user::ROLE_ADMIN;
     }
 
     /**
