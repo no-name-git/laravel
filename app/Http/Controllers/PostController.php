@@ -16,10 +16,11 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        // $posts = Post::with('author')->get();
-        $posts = Post::paginate(6);
+        $sort = $request->get('sort', 'created_at');
+        $order = $request->get('order', 'desc');
+        $posts = Post::orderBy($sort, $order)->paginate(6);
         return view('index', compact('posts'));
     }
 
