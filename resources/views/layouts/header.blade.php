@@ -16,7 +16,7 @@
                 <a href="{{route('index')}}" class="text-sm text-gray-600 hover:underline">Posts</a>
                 @auth
                     <a href="{{route('create')}}" class="text-sm text-gray-600 hover:underline">Create post</a>
-                    <a href="" class="text-sm text-gray-600 hover:underline">Users</a>
+                    <a href="{{ route('users.index') }}" class="text-sm text-gray-600 hover:underline">Users</a>
                 @endauth
                 @guest
                     <a href="{{route('login')}}" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">log in</a>
@@ -29,7 +29,7 @@
                     </form>
                 @endauth
                 @auth
-                    <p>{{Auth::user()->name}}</p>
+                    <a href="{{ route('user.profile', Auth::user()->id) }}">{{Auth::user()->name}}</a>
                 @endauth
                 {{-- <a href="{{ route('dashboard') }}" class="text-sm text-gray-600 hover:underline">Logout</a> --}}
             </nav>

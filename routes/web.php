@@ -22,7 +22,7 @@ Route::patch('/update/{id}', [PostController::class, 'update'])->name('update');
 Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('destroy');
 
 Route::get('/users/index', [UserController::class, 'index'])->name('users.index');
-
+Route::get('/users/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
 
 
 Route::get('/dashboard', function () {
