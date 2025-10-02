@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -21,8 +22,13 @@ Route::get('/edit/{id}', [PostController::class, 'edit'])->name('edit');
 Route::patch('/update/{id}', [PostController::class, 'update'])->name('update');
 Route::delete('/destroy/{id}', [PostController::class, 'destroy'])->name('destroy');
 
+//users
 Route::get('/users/index', [UserController::class, 'index'])->name('users.index');
 Route::get('/users/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
+
+// comments
+Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');
+
 
 
 Route::get('/dashboard', function () {

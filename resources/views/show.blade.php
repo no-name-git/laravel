@@ -30,5 +30,13 @@
         @endcan
             
     </div>
+    <form action="{{ route('comment.store') }}" method="post" enctype="multipart/form-data" class="flex mt-6">
+        @csrf
+        <input type="file" name="image_comment">
+        <input type="hidden" name="post_id" value="{{ $id->id }}">
+        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+        <textarea name="text_comment" id="" cols="100" rows="3"></textarea>
+        <button type="submit" class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700">to send</button>
+    </form>
 </div>
 @endsection
