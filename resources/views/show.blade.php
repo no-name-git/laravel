@@ -30,6 +30,10 @@
         @endcan
             
     </div>
+    <div>
+    </div>
+
+
     <form action="{{ route('comment.store') }}" method="post" enctype="multipart/form-data" class="flex mt-6">
         @csrf
         <input type="file" name="image_comment">
