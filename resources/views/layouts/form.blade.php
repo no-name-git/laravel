@@ -15,7 +15,7 @@
         @enderror
     </div>
     <div>
-        <input name="user_id" type="hidden" value="{{ $user_id }}" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-200">
+        <input name="user_id" type="hidden" value="{{ $id->user_id ?? Auth::id() }}" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-indigo-200">
     </div>
     <div>
         <input type="file" name="image" id="image" class="form-control">
