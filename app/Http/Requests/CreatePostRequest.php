@@ -27,6 +27,7 @@ class CreatePostRequest extends FormRequest
             'title' => 'required|min:3|max:40',
             'deskr' => 'required|min:1|max:500',
             'user_id' => 'required|exists:users,id',
+            'categori_id' => 'required|exists:categoris,id',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:5120'
         ];
     }
@@ -36,6 +37,7 @@ class CreatePostRequest extends FormRequest
         return [
             'title.required' => 'Введите заголовок',
             'title.min' => 'Минимальное число символов 3',
+            'categori_id.required' => 'Выберите категорию', 
             'deskr.required' => 'Введите заголовок',
             'deskr.min' => 'Минимальное число символов 1',
             'image.image' => 'Файл должен быть .jpeg, .png, .jpg, .gif',

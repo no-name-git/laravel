@@ -29,7 +29,8 @@ Route::get('/users/profile/{id}', [UserController::class, 'profile'])->name('use
 // comments
 Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');
 
-
+// categoris
+Route::get('/categori/{id}', [PostController::class, 'index'])->name('categori');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

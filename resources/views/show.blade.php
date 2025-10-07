@@ -1,7 +1,6 @@
 @extends('layouts.header', ['titlePage' => $post->title])
 @section('content')
 
-
 <div class="bg-white shadow rounded p-6">
     <img src="
     @if($post->image)

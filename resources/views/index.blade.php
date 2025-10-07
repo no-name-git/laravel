@@ -3,7 +3,13 @@
 <div>
     <h1 class="text-2xl font-bold mb-6">All Posts</h1>
 
-    <div class="flex gap-6 justify-between flex-wrap">
+    <ul class="flex gap-3">
+        @foreach ($categoris as $categor)
+            <li><a href="{{ route('categori', $categor->id) }}">{{$categor->name}}</a></li>
+        @endforeach
+    </ul>
+    
+    <div class="flex mt-5 gap-6 justify-between flex-wrap">
         <!-- Пример одного поста -->
         @foreach ($posts as $post)
             <div class="max-w-[500px] bg-white shadow rounded p-4">
@@ -17,6 +23,8 @@
                 <a href="{{route('show' , $post->id)}}" class="text-xl font-semibold text-indigo-600">{{$post->title}}</a>
                 <p class="text-gray-600 text-sm mb-2">{{$post->author->name}} — {{$post->created_at}}</p>
                 <p class="text-gray-700">{{$post->deskr}}</p>
+                <p class="text-gray-700">{{$post->categori->name}}</p>
+
                 <div class="mt-4 flex gap-2">
                     @can('create', App\Models\Post::class)                        
                         <a href="{{ route('edit', $post->id) }}" class="px-3 py-1 bg-indigo-600 text-white rounded hover:bg-indigo-700">Edit</a>

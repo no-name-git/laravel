@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Categori;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,12 +17,13 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, $id)
     {
         $sort = $request->get('sort', 'created_at');
         $order = $request->get('order', 'desc');
         $posts = Post::orderBy($sort, $order)->paginate(6);
-        return view('index', compact('posts'));
+        $categoris = Categori::all()->findOrFail($id);
+        return view('index', compact('posts', 'categoris'));
     }
 
     /**
@@ -32,7 +34,8 @@ class PostController extends Controller
     public function create()
     {
         $user_id = Auth::id();
-        return view('create', compact('user_id'));
+        $categoris = Categori::all();
+        return view('create', compact('user_id', 'categoris'));
     }
 
     /**
@@ -75,7 +78,8 @@ class PostController extends Controller
     public function edit(Post $id) 
     {
         $this->authorize('update', $id);
-        return view('edit', compact('id'));
+        $categoris = Categori::all();
+        return view('edit', compact('id', 'categoris'));
     }
 
     /**
