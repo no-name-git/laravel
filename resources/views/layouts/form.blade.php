@@ -22,7 +22,7 @@
         <select name="categori_id" id="">
             <option selected="selected">{{old('categori_id') ? $categoris->find(old('categori_id'))->name : $id->categoris->name ?? 'Выберите категорию'}}</option>
             @foreach ($categoris as $categor)
-                <option value="{{ $categor->id }}" {{ old('categori_id') == $categor->id ? 'selected' : ($id->category_id == $categor->id ? 'selected' : '') }}>{{$categor->name}}</option>
+                <option value="{{ $categor->id }}">{{$categor->name}}</option>
             @endforeach
         </select>
     </div>

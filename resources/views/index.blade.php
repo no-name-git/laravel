@@ -8,6 +8,7 @@
             <li><a href="{{ route('categori', $categor->id) }}">{{$categor->name}}</a></li>
         @endforeach
     </ul>
+
     
     <div class="flex mt-5 gap-6 justify-between flex-wrap">
         <!-- Пример одного поста -->

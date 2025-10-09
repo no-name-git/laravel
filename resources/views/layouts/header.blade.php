@@ -12,7 +12,7 @@
     <header class="bg-white shadow">
         <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="{{route('index')}}" class="text-xl font-bold text-indigo-600">What i know?</a>
-            <nav class="flex gap-4 nav">
+            <nav class="flex gap-4 nav items-center">
                 <a href="{{route('index')}}" class="text-sm text-gray-600 hover:underline">Posts</a>
                 @auth
                     <a href="{{route('create')}}" class="text-sm text-gray-600 hover:underline">Create post</a>
@@ -29,7 +29,17 @@
                     </form>
                 @endauth
                 @auth
-                    <a href="{{ route('user.show', Auth::user()->id) }}">{{Auth::user()->last_name}}</a>
+                    <a class="flex flex-col items-center" href="{{ route('user.show', Auth::user()->id) }}">
+                        <img src="
+                            @if(Auth::user()->profile->avatar)
+                                {{asset('storage/' . Auth::user()->profile->avatar)}}
+                            @else
+                                {{asset('images/avatar/defolt.png')}}
+                            @endif
+                        " 
+                        class="w-10 h-10 rounded-full border-2 border-gray-300" alt="avatar">    
+                            {{Auth::user()->last_name}}
+                    </a>
                 @endauth
                 {{-- <a href="{{ route('dashboard') }}" class="text-sm text-gray-600 hover:underline">Logout</a> --}}
             </nav>

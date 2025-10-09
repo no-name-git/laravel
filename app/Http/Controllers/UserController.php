@@ -14,23 +14,25 @@ class UserController extends Controller
         return view('user.index', compact('users'));
     }
 
-    public function edit(ProfileUser $user){
-        return view('user.edit', compact('user'));
+    public function edit(ProfileUser $id){
+        return view('user.edit', compact('id'));
     }
 
-    public function store(CreateProfileRequest $request, ProfileUser $user){
+    public function update(CreateProfileRequest $request, ProfileUser $id ){
         $date = $request->validated();
         if($request->hasFile('avatar')){
-            $path = $request->file('avatar')->store('prpfile', 'public');
+            $path = $request->file('avatar')->store('profile', 'public');
             $date['avatar'] = $path;
         }
-        ProfileUser::created($date);
-        return redirect()->route('user.show', $user->id);
+
+        $id->update($date);
+        return redirect()->route('user.show', $id->id);
     }
 
     public function show($id)
     {
-        $user = ProfileUser::find($id);        
+
+        $user = ProfileUser::find($id);   
         return view('user.show', compact('user'));
     }
 }

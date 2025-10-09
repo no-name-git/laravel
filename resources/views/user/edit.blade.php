@@ -1,8 +1,7 @@
 @extends('layouts.header', ['titlePage' => 'Edit profile'])
 @section('content')
-
 <div class="bg-white shadow rounded p-6">
-    <form action="{{ route('user.store') }}" method="post" class="flex gap-3 flex-col w-[400px]" enctype="multipart/form-data">
+    <form action="{{ route('user.update', $id->id) }}" method="post" class="flex gap-3 flex-col w-[400px]" enctype="multipart/form-data">
         @csrf
 
         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">

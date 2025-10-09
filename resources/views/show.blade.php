@@ -33,13 +33,18 @@
     </div>
     <h2>Comments</h2>
     @foreach ($post->comments as $comment)
-        <div class="flex gap-4 mt-4">
+        <div class="flex gap-4 mt-4 items-center">
             <div>
-                {{-- тут надо будет переделать как разберусь с авторизацией ларавел  --}}
-                <img src="{{ asset('storage/' . $post->image) }}" alt="" class="w-[48px] h-[48px] rounded-full">
+                <img src="
+                    @if (Auth::user()->profile->avatar)
+                        {{ asset('storage/' . Auth::user()->profile->avatar) }}
+                    @else
+                        {{asset('images/avatar/defolt.png')}}
+                    @endif
+                " alt="" class="w-[48px] h-[48px] rounded-full">
             </div>
             <div class="flex flex-col">
-                <h3>{{$comment->user->name . " " . $comment->user->profile->first_name}}</h3>
+                <h3>{{Auth::user()->first_name . " " . Auth::user()->last_name}}</h3>
                 <p>{{$comment->text_comment}}</p>
                 @if ($comment->image_comment)
                     <img src="{{ asset('storage/' . $comment->image_comment) }}"
