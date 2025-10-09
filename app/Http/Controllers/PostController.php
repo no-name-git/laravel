@@ -17,12 +17,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, $id)
+    public function index(Request $request)
     {
         $sort = $request->get('sort', 'created_at');
         $order = $request->get('order', 'desc');
         $posts = Post::orderBy($sort, $order)->paginate(6);
-        $categoris = Categori::all()->findOrFail($id);
+        $categoris = Categori::all();
         return view('index', compact('posts', 'categoris'));
     }
 

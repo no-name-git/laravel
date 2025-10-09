@@ -29,7 +29,7 @@
                     </form>
                 @endauth
                 @auth
-                    <a href="{{ route('user.profile', Auth::user()->id) }}">{{Auth::user()->name}}</a>
+                    <a href="{{ route('user.show', Auth::user()->id) }}">{{Auth::user()->last_name}}</a>
                 @endauth
                 {{-- <a href="{{ route('dashboard') }}" class="text-sm text-gray-600 hover:underline">Logout</a> --}}
             </nav>
