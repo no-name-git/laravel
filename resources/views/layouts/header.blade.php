@@ -12,6 +12,23 @@
     <header class="bg-white shadow">
         <div class="max-w-5xl mx-auto px-4 py-4 flex justify-between items-center">
             <a href="{{route('index')}}" class="text-xl font-bold text-indigo-600">What i know?</a>
+            
+            <div class="flex items-center">
+                <form class="flex w-full max-w-sm bg-white rounded border shadow-md">
+                    <input
+                        type="text"
+                        placeholder="Поиск..."
+                        class="flex-1 px-4 py-2 text-gray-700 border-none rounded-l focus:outline-none"
+                    />
+                    <button
+                        type="submit"
+                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r"
+                    >
+                        Найти
+                    </button>
+                </form>
+            </div>
+            
             <nav class="flex gap-4 nav items-center">
                 <a href="{{route('index')}}" class="text-sm text-gray-600 hover:underline">Posts</a>
                 @auth

@@ -1,10 +1,9 @@
 @extends('layouts.header', ['titlePage' => "Главная страница"])
 @section('content')
-
 <div class="mt-5 max-w-md mx-auto bg-white shadow-md rounded-lg overflow-hidden">
     <div class="flex items-center p-4">
         <img class="w-20 h-20 rounded-full border-2 border-gray-300" src="
-        @if($user->avatar)
+        @if($user->avatar != '')
             {{asset('storage/' . $user->avatar)}}
         @else
             {{asset('images/avatar/defolt.png')}}

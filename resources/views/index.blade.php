@@ -22,7 +22,7 @@
                 @endif
                 ">
                 <a href="{{route('show' , $post->id)}}" class="text-xl font-semibold text-indigo-600">{{$post->title}}</a>
-                <p class="text-gray-600 text-sm mb-2">{{$post->author->name}} — {{$post->created_at}}</p>
+                <p class="text-gray-600 text-sm mb-2">{{$post->author->last_name . " " . $post->author->first_name}} — {{$post->created_at}}</p>
                 <p class="text-gray-700">{{$post->deskr}}</p>
                 <p class="text-gray-700">{{$post->categori->name}}</p>
 
